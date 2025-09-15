@@ -35,7 +35,7 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => (store.getState()))
 
 // Still pass action objects to `dispatch`, but they're created for us
 store.dispatch(incremented())

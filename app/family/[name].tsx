@@ -1,4 +1,3 @@
-// family/[name].tsx
 import { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useLocalSearchParams } from "expo-router";

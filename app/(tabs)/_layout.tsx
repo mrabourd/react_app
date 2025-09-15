@@ -19,14 +19,18 @@ export default function TopTabsLayout() {
     <TopTabs
       screenOptions={{
         tabBarActiveTintColor: currentColors.tint,
-        tabBarStyle: { backgroundColor: currentColors.background }
+        tabBarStyle: { backgroundColor: currentColors.background, height: 100 },
+        tabBarLabelStyle: {
+          marginTop: 1, 
+          fontSize: 16,
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Family of fruits',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="fruit-citrus" size={28} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="fruit-citrus" size={28} color={color} style={{ marginTop: 25 }}/>,
         }}
       />
 
@@ -34,7 +38,7 @@ export default function TopTabsLayout() {
         name="favorites"
         options={{
           title: 'Bookmarks',
-          tabBarIcon: ({ color }) => <MaterialIcons name="bookmark" size={28} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons name="bookmark" size={28} color={color} style={{ marginTop: 25 }} />,
         }}
       />
     </TopTabs>

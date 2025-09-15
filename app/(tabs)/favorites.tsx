@@ -4,41 +4,45 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
-import { MaterialIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-export default function TabTwoScreen() {
+export default function FavoritesScreen() {
   const favorites = useAppSelector(state => state.favorites.fruits);
-  return (
+
+  const renderHeader = () => (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
-        <MaterialIcons
-          name="bookmark-outline" // équivalent de AiOutlineBook
-          size={210}
+        <MaterialCommunityIcons 
+          name="fruit-grapes"
+          size={330}
           color="#808080"
-          style={styles.headerImage}
         />
-      }>
+      }
+    >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
+        <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Bookmarks
         </ThemedText>
       </ThemedView>
-      <ThemedText>Here are my favorite fruits.</ThemedText>
-      <FlatList
-        data={favorites}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <ThemedText>{item.name}</ThemedText>
-          </View>
-        )}
-      />
+      <ThemedText style={styles.subtitle}>
+        Here are my favorite fruits.
+      </ThemedText>
     </ParallaxScrollView>
+  );
+
+  return (
+    <FlatList
+      data={favorites}
+      keyExtractor={(item) => item.id.toString()}
+      ListHeaderComponent={renderHeader}
+      renderItem={({ item }) => (
+        <ThemedView style={styles.item}>
+          <ThemedText style={styles.text}>{item.name}</ThemedText>
+        </ThemedView>
+      )}
+      contentContainerStyle={{ paddingBottom: 20 }}
+    />
   );
 }
 
@@ -53,9 +57,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  subtitle: {
+    paddingHorizontal: 20,
+    marginBottom: 10,
+    fontSize: 16,
+  },
   item: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+  },
+  text: {
+    fontSize: 16,
   },
 });

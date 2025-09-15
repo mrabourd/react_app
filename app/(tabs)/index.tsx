@@ -30,7 +30,6 @@ export default function HomeScreen() {
   }, []);
 
   const families = Array.from(new Set(fruits.map(fruit => fruit.family)));
-  const colorScheme = useColorScheme(); 
 
   if (loading) {
     return <Text>Chargement...</Text>;
@@ -39,7 +38,7 @@ export default function HomeScreen() {
   const renderHeader = () => (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={<MaterialIcons name="grass" size={310} color="#808080" />}
+      headerImage={<MaterialIcons name="grass" size={300} color="#808080" />}
     >
       <ThemedView style={styles.titleContainer}>
         <ThemedText
@@ -58,11 +57,14 @@ export default function HomeScreen() {
       keyExtractor={(item) => item}
       ListHeaderComponent={renderHeader}
       renderItem={({ item }) => (
+        <ThemedView>
         <Link key={item} href={{ pathname: "/family/[name]", params: { name: item } }} asChild>
           <TouchableOpacity style={styles.item}>
             <ThemedText style={styles.text}>{item}</ThemedText>
           </TouchableOpacity>
         </Link>
+
+        </ThemedView>
       )}
     />
   );

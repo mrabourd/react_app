@@ -23,8 +23,15 @@ export default function RootLayout() {
   );
 }
 
+
 function AppContent() {
   const theme = useAppSelector(state => state.theme.mode);
+  const styles = StyleSheet.create({
+    header: {
+      backgroundColor: '#D0D0D0',
+      height: 300,
+    },
+  });
 
   return (
     <ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -32,6 +39,13 @@ function AppContent() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+          <Stack.Screen
+            name="family/[name]"
+            options={{
+              title: 'Back',
+              headerStyle: styles.header
+            }}
+        />
         </Stack>
 
         <Footer />
