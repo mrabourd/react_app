@@ -3,7 +3,7 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 It is a test for a job at Aimigo!
 
-## Get started
+## How to run the app?
 
 1. Android / iOS
 If your phone is an Android, install Expo Go with the Play Store. Otherwise, you won't need to install anything.
@@ -17,3 +17,7 @@ If your phone is an Android, install Expo Go with the Play Store. Otherwise, you
    ```
 
 4. You can run your phone's camera and screen the QR code. The app will run on your phone.
+
+## Technical choices
+
+## The architecture of the project
