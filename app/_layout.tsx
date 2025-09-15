@@ -1,14 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { store } from "../store/store";
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "./store/themeSlice";
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { toggleTheme } from "@/store/themeSlice";
+import { useAppSelector } from '@/hooks/redux';
+import 'react-native-reanimated';
 
 
 export const unstable_settings = {

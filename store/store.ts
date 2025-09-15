@@ -1,6 +1,7 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 import themeReducer from './themeSlice';
+import favoritesReducer from "./favoritesSlice";
 
 const counterSlice = createSlice({
   name: 'counter',
@@ -26,6 +27,7 @@ export const { incremented, decremented } = counterSlice.actions
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
+    favorites: favoritesReducer,
     theme: themeReducer,
   },
 })
@@ -33,7 +35,6 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// Can still subscribe to the store
 store.subscribe(() => console.log(store.getState()))
 
 // Still pass action objects to `dispatch`, but they're created for us

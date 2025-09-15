@@ -4,6 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Tabs, withLayoutContext } from "expo-router";
 import { useAppSelector } from '@/hooks/redux';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator();
 const TopTabs = withLayoutContext(Navigator);
@@ -24,22 +25,16 @@ export default function TopTabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Family of fruits',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="fruit-citrus" size={28} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+
       <Tabs.Screen
         name="favorites"
         options={{
           title: 'Bookmarks',
-          tabBarIcon: ({ color }) => <IconSymbol name="bookmark" size={28} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons name="bookmark" size={28} color={color} />,
         }}
       />
     </TopTabs>

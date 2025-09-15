@@ -1,15 +1,18 @@
-import { Image } from 'expo-image';
-import { View, FlatList, Text, ActivityIndicator, StyleSheet, StatusBar} from 'react-native';
-import { Item } from '@/app/item/item';
-import React, { useEffect, useState } from 'react';
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
+// HomeScreen.tsx
+import { FlatList, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Link } from "expo-router";
+import { MaterialIcons } from '@expo/vector-icons';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { Fonts } from '@/constants/theme';
+import ParallaxScrollView from '@/components/parallax-scroll-view';
+
 
 type Fruit = {
   name: string;
   id: number;
+  family: string;
 };
 
 export default function HomeScreen() {
@@ -26,83 +29,57 @@ export default function HomeScreen() {
       .finally(() => setLoading(false));
   }, []);
 
+  const families = Array.from(new Set(fruits.map(fruit => fruit.family)));
+  const colorScheme = useColorScheme(); 
+
   if (loading) {
-    return (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#00aa00" />
-        <Text>Loading fruits...</Text>
-      </View>
-    );
+    return <Text>Chargement...</Text>;
   }
 
-  if (!fruits.length) {
-
-    return (
-      <View style={styles.loader}>
-        <ThemedText>No fruits found.</ThemedText>
-      </View>
-    );
-  }
+  const renderHeader = () => (
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
+      headerImage={<MaterialIcons name="grass" size={310} color="#808080" />}
+    >
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText
+          type="title"
+          style={{ fontFamily: Fonts.rounded }}
+        >
+          Families
+        </ThemedText>
+      </ThemedView>
+    </ParallaxScrollView>
+  );
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedText>
-        Here are the elements from the API
-      </ThemedText>
-      <View style={styles.container}>
-      <FlatList
-        data={fruits}
-        keyExtractor={(item) => item.id.toString()} 
-        renderItem={({ item }) => <Item title={item.name} />}
-      />
-    </View>
-      </ParallaxScrollView>
+    <FlatList
+      data={families}
+      keyExtractor={(item) => item}
+      ListHeaderComponent={renderHeader}
+      renderItem={({ item }) => (
+        <Link key={item} href={{ pathname: "/family/[name]", params: { name: item } }} asChild>
+          <TouchableOpacity style={styles.item}>
+            <ThemedText style={styles.text}>{item}</ThemedText>
+          </TouchableOpacity>
+        </Link>
+      )}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    padding: 20,
   },
   item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
   },
-  title: {
+  text: {
     fontSize: 16,
   },
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
+
