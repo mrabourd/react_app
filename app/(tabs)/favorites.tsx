@@ -22,7 +22,7 @@ export default function FavoritesScreen() {
     >
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
-          Bookmarks
+          I love them.
         </ThemedText>
       </ThemedView>
       <ThemedText style={styles.subtitle}>

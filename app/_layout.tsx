@@ -4,7 +4,7 @@ import { store } from "../store/store";
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleTheme } from "@/store/themeSlice";
 import { useAppSelector } from '@/hooks/redux';
 import 'react-native-reanimated';
@@ -38,7 +38,7 @@ function AppContent() {
       <View style={{ flex: 1 }}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+          
           <Stack.Screen
             name="family/[name]"
             options={{

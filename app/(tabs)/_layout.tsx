@@ -1,5 +1,4 @@
 import { Colors } from '@/constants/theme';
-import { IconSymbol } from '@/components/ui/icon-symbol';
 import { MaterialIcons } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Tabs, withLayoutContext } from "expo-router";
@@ -37,7 +36,7 @@ export default function TopTabsLayout() {
       <Tabs.Screen
         name="favorites"
         options={{
-          title: 'Bookmarks',
+          title: 'My favorite fruits',
           tabBarIcon: ({ color }) => <MaterialIcons name="bookmark" size={28} color={color} style={{ marginTop: 25 }} />,
         }}
       />

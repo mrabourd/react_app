@@ -45,7 +45,7 @@ export default function HomeScreen() {
           type="title"
           style={{ fontFamily: Fonts.rounded }}
         >
-          Families
+          Here are the fruits families!
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
