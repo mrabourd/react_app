@@ -8,14 +8,15 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
-import { AiOutlineBook } from "react-icons/ai";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
-        <AiOutlineBook
+        <MaterialIcons
+          name="bookmark-outline" // équivalent de AiOutlineBook
           size={210}
           color="#808080"
           style={styles.headerImage}

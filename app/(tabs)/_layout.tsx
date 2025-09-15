@@ -1,6 +1,6 @@
 import { Colors } from '@/constants/theme';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { AiFillBook } from "react-icons/ai";
+import { MaterialIcons } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Tabs, withLayoutContext } from "expo-router";
 import { useAppSelector } from '@/hooks/redux';
@@ -39,7 +39,7 @@ export default function TopTabsLayout() {
         name="favorites"
         options={{
           title: 'Bookmarks',
-          tabBarIcon: ({ color }) => <AiFillBook size={28} color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol name="bookmark" size={28} color={color} />,
         }}
       />
     </TopTabs>

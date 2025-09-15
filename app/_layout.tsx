@@ -25,7 +25,7 @@ export default function RootLayout() {
 }
 
 function AppContent() {
-  const theme = useAppSelector(state => state.theme.mode); // ✅ inside Provider
+  const theme = useAppSelector(state => state.theme.mode);
 
   return (
     <ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -49,21 +49,21 @@ function Footer() {
 
   return (
     <View style={styles.footer}>
-      <Text style={styles.text}>© 2025 My App</Text>
-
       <Pressable
         style={styles.toggleButton}
         onPress={() => dispatch(toggleTheme())}  
       >
         <Text style={styles.toggleText}>{theme === "dark" ? "🌙" : "☀️"}</Text>
       </Pressable>
+      <Text style={styles.text}>© 2025 Aimigo-test</Text>
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   footer: {
-    height: 60,
+    height: 80,
     backgroundColor: "#eee",
     justifyContent: "center",
     alignItems: "center",
