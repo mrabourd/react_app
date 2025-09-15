@@ -3,7 +3,7 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 It is a test for a job at Aimigo!
 
-## How to run the app?
+## 📱 How to run the app?
 
 1. **Android / iOS**
 
@@ -23,7 +23,7 @@ Open a terminal in the root of the project folder, and enter:
 
 You can open your phone’s camera, scan the QR code, and the app will run on your device.
 
-## Technical choices
+## 🔧 Technical choices
 
 I am new to React Native, so I chose tools that are easy to learn while still being effective.
 
@@ -33,7 +33,7 @@ I am new to React Native, so I chose tools that are easy to learn while still be
 
 - Expo Router → file-based routing and tab navigation, which simplifies screen structure.
 
-## The architecture of the project
+## 🧩 The architecture of the project
 
 - __app__: Manages the screens, main content, navigation bar, and footer.
 
