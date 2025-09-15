@@ -1,28 +1,82 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Provider } from "react-redux";
-import { store } from "./store/store.js";
+import { store } from "./store/store";
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "./store/themeSlice";
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
 
   return (
-  <Provider store={store}>
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  </Provider>
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
   );
 }
+
+function AppContent() {
+  const theme = useAppSelector(state => state.theme.mode); // ✅ inside Provider
+
+  return (
+    <ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
+      <View style={{ flex: 1 }}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+
+        <Footer />
+      </View>
+
+      <StatusBar style="auto" />
+    </ThemeProvider>
+  );
+}
+
+function Footer() {
+  const dispatch = useDispatch();
+  const theme = useAppSelector(state => state.theme.mode);
+
+  return (
+    <View style={styles.footer}>
+      <Text style={styles.text}>© 2025 My App</Text>
+
+      <Pressable
+        style={styles.toggleButton}
+        onPress={() => dispatch(toggleTheme())}  
+      >
+        <Text style={styles.toggleText}>{theme === "dark" ? "🌙" : "☀️"}</Text>
+      </Pressable>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  footer: {
+    height: 60,
+    backgroundColor: "#eee",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: "#333",
+  },
+  toggleButton: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: "#ccc",
+  },
+  toggleText: {
+    fontSize: 18,
+  },
+});

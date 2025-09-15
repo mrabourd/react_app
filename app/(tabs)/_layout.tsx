@@ -1,21 +1,26 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { AiFillBook } from "react-icons/ai";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Tabs, withLayoutContext } from "expo-router";
+import { useAppSelector } from '@/hooks/redux';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const { Navigator, Screen } = createMaterialTopTabNavigator();
+const TopTabs = withLayoutContext(Navigator);
+
+export default function TopTabsLayout() {
+    const theme = useAppSelector(state => state.theme.mode); 
+
+    const currentColors = Colors[theme as keyof typeof Colors];
+    
 
   return (
-    <Tabs
+    <TopTabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: currentColors.tint,
+        tabBarStyle: { backgroundColor: currentColors.background }
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -30,6 +35,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
-    </Tabs>
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: 'Bookmarks',
+          tabBarIcon: ({ color }) => <AiFillBook size={28} color={color} />,
+        }}
+      />
+    </TopTabs>
   );
 }
