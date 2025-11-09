@@ -34,7 +34,7 @@ export default function TopTabsLayout() {
       />
 
       <Tabs.Screen
-        name="favorites"
+        name="useful_address"
         options={{
           title: 'My favorite fruits',
           tabBarIcon: ({ color }) => <MaterialIcons name="bookmark" size={28} color={color} style={{ marginTop: 25 }} />,

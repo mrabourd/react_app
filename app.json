@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "aimigo-expo",
-    "slug": "aimigo-expo",
+    "name": "job-expo",
+    "slug": "job-expo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "aimigoexpo",
+    "scheme": "jobexpo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

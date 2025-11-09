@@ -68,7 +68,7 @@ function Footer() {
       >
         <Text style={styles.toggleText}>{theme === "dark" ? "🌙" : "☀️"}</Text>
       </Pressable>
-      <Text style={styles.text}>© 2025 Aimigo-test</Text>
+      <Text style={styles.text}>© 2025 job-test</Text>
 
     </View>
   )

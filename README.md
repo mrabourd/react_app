@@ -1,7 +1,7 @@
-# Welcome to Aimigo-test! 👋
+# Welcome to job-test! 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-It is a test for a job at Aimigo!
+It is a personal project!
 
 ## 📱 How to run the app?
 
